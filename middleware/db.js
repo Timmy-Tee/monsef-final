@@ -3,7 +3,7 @@ const app = express()
 const mongoose          =   require("mongoose");
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/UploadedImage")
+mongoose.connect("mongodb+srv://olawooreifeoluea2004:opeyemi02@cluster0.3qr8fxu.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>{
     console.log("Connection Successful");
 })
