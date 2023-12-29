@@ -142,6 +142,23 @@ function updateTotalAmount() {
  document.getElementById("totalAmount").innerHTML = totalAmount;
 }
 
+function printDiv(content) {
+ // Get the inner HTML content of the "content" div
+ var printContents = document.getElementById("content").innerHTML;
+
+ // Store the current content of the body
+ var originalContents = document.body.innerHTML;
+
+ // Replace the body content with the content of the "content" div
+ document.body.innerHTML = printContents;
+
+ // Print the content
+ window.print();
+
+ // Restore the original content of the body
+ document.body.innerHTML = originalContents;
+}
+
 
 
 </script>
