@@ -26,6 +26,9 @@ app.get("/service", (req,res)=>{
 app.get("/contact", (req,res)=>{
     res.render("contact")
 })
+app.get("/recieptgenerator", (req,res)=>{
+    res.render("recieptgenerator")
+})
 
 app.listen(PORT, (req,res)=>[
     console.log("Server Running On Port " + PORT)
