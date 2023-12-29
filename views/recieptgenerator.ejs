@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <link rel="stylesheet" href="styles.css">
+ <script src="./reciept.js"></script>
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+ <!-- <link rel="stylesheet" href="index.css"> -->
+</head>
+<body>
+ <div class="body">
+  <div class="">
+   <nav class="dashboard-header">
+   <label data-aos="zoom-out-up"><img src="/image/monsef-logo-removebg-preview.png" class="logo" alt=""></label>
+   <h1>DASHBOARD</h1>
+   <a href="monsefmedia.com">Go To Homepage</a>
+  </nav>
+
+  </div>
+  <div class="main-body">
+  <div class="sidebar">
+   <div class="side_nav" id="side_nav">
+  
+      <img src="/image/logo3.png" class="sidebar-img" alt="">
+                     -->
+
+    
+    <nav>
+    <ul>
+     <!-- <li> <a href="dashboard.html" class="fa fa-grip" id="active"><p>Dasboard</p></a> </li> -->
+     <li> <a href="./upload.html" class="fa fa-align-left"><p>Upload</p></a> </li>
+     <li> <a href="./recieptgenerator.html" class="fa fa-chart-simple"><p>Invoice</p></a> </li>
+     
+     
+     <br><br><br>
+     <!-- <li> <a href="" class="fa fa-sign-out"><p>Logout</p></a> </li> -->
+     <br><br><br>
+     <a class="fa fa-sliders"></a>
+ </ul>
+ </nav>
+</div>
+</div>
+
+<div class="container" >
+  <!-- Invoice Input -->
+  <h3>Invoice Generator</h3>
+  <form id="invoiceForm">
+    <input type="text" id="ItemName" placeholder="Enter Item..." />
+    <input type="number" id="ItemPrice" placeholder="Enter Price..." />
+    <input type="number" id="quantity" placeholder="Qty" />
+    <input type="text" id="customerName" placeholder="Enter Customer Name" />
+    <button type="button" onclick="addItem()" id="mainbutton">
+      Add Item
+    </button>
+  </form>
+  
+  <!-- Invoice Display Section -->
+  <div id="content">
+    <!-- Your company details -->
+    <!-- ... -->
+    <div id="details" style="display: flex;flex-direction: column; ">
+      <div style="display: flex;flex-direction: column; justify-content: center; align-items: center;text-align: center;">
+        <img src="/image/logo3.png" class="logo" alt="">
+        <p>ADDRESS: NO 1, SOMORIN JUNCTION, OBANTOKO, ABEOKUTA, OGUN STATE, NIGERIA.
+        
+        </p>
+      
+        <p>TEL NO: 09117448070</p>  </div><br>
+      <label for="name">Customer Name: <span id="customerDetails"></span></label> 
+      <br>
+      <table id="invoiceTable">
+        <tr>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <!-- <th>Action</th> -->
+        </tr>
+      </table>
+      <h6>Total Amount <span id="totalAmount">0</span></h6><br><br>
+      <div style="display: flex;flex-direction: column; justify-content: center; align-items: center;text-align: center;">
+      <p>Thanks for your patronage</p></div>
+    </div>
+    
+  </div>
+  <input type="button" onclick="printDiv('content')" value="Print Receipt" />
+ </div>
+</div>
+
+<script>
+// Object to store transaction IDs associated with customers
+var transactionIds = {};
+
+function addItem() {
+ var itemName = document.getElementById("ItemName").value;
+ var itemPrice = document.getElementById("ItemPrice").value;
+ var qty = document.getElementById("quantity").value;
+ var customerName = document.getElementById("customerName").value;
+
+ // Generate a random transaction ID for a new customer or use existing for the same customer
+ var transactionId = transactionIds[customerName] || Math.floor(Math.random() * 1000000);
+
+ // Store the transaction ID for the customer
+ transactionIds[customerName] = transactionId;
+
+ var total = itemPrice * qty;
+
+ var table = document.getElementById("invoiceTable");
+ var row = table.insertRow(-1);
+ var itemNameCell = row.insertCell(0);
+ var priceCell = row.insertCell(1);
+ var quantityCell = row.insertCell(2);
+ var totalCell = row.insertCell(3);
+
+ itemNameCell.innerHTML = itemName;
+ priceCell.innerHTML = itemPrice;
+ quantityCell.innerHTML = qty;
+ totalCell.innerHTML = total;
+ 
+ // Display customer name and transaction ID
+ document.getElementById("customerDetails").innerHTML = customerName + " <br/> Transaction ID: monsef" + transactionId + "";
+
+ document.getElementById("ItemName").value = "";
+ document.getElementById("ItemPrice").value = "";
+ document.getElementById("quantity").value = "";
+
+ updateTotalAmount();
+}
+
+function updateTotalAmount() {
+ var table = document.getElementById("invoiceTable");
+ var rowCount = table.rows.length;
+ var totalAmount = 0;
+
+ for (var i = 1; i < rowCount; i++) {
+   var row = table.rows[i];
+   var totalCell = row.cells[3];
+   totalAmount += parseFloat(totalCell.innerHTML);
+ }
+ document.getElementById("totalAmount").innerHTML = totalAmount;
+}
+
+
+
+</script>
+ 
+</body>
+</html>
