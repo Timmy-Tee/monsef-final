@@ -21,7 +21,7 @@
   <img src="/image/monsef-logo-removebg-preview.png" class="logo" alt="">
    <h1 style="color: white;">DASHBOARD</h1>
    <!-- <a href="monsefmedia.com">Go To Homepage</a> -->
-   <div class="user" style=""><i class="fa-solid fa-user"></i> <p>Admin</p></div>
+   <div class="user" ><i class="fa-solid fa-user"></i> <p>Admin</p></div>
   </nav>
 
 
@@ -150,6 +150,23 @@ function updateTotalAmount() {
 }
 
 
+
+function printDiv(content) {
+ // Get the inner HTML content of the "content" div
+ var printContents = document.getElementById("content").innerHTML;
+
+ // Store the current content of the body
+ var originalContents = document.body.innerHTML;
+
+ // Replace the body content with the content of the "content" div
+ document.body.innerHTML = printContents;
+
+ // Print the content
+ window.print();
+
+ // Restore the original content of the body
+ document.body.innerHTML = originalContents;
+}
 
 </script>
  
