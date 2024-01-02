@@ -8,9 +8,6 @@ const path          =   require("path");
 
 
 let storage = multer.diskStorage({
-    destination: (req,file,cb)=>{
-        cb(null, "./public/upload/");  
-    },
     filename: (req,file,cb)=>{
         cb(null, file.originalname + '_' + Date.now() + path.extname(file.originalname))
     }
