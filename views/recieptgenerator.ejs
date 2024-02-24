@@ -77,7 +77,12 @@
       
         <p>TEL NO: 09117448070</p>  </div><br>
       <label for="name">Customer Name: <span id="customerDetails"></span></label> 
+      
+      <label for="transaction">Transaction date: <span id="transactiondate"></span></label> 
+      
+      <label for="transaction">Transaction time: <span id="transactiontime"></span></label> 
       <br>
+      
       <table id="invoiceTable">
         <tr>
           <th>Description</th>
@@ -137,6 +142,9 @@ function addItem() {
  document.getElementById("quantity").value = "";
 
  updateTotalAmount();
+
+ showTransactionDateTime(transactionId);
+
 }
 
 function updateTotalAmount() {
@@ -150,6 +158,13 @@ function updateTotalAmount() {
    totalAmount += parseFloat(priceCell.innerHTML);
  }
  document.getElementById("totalAmount").innerHTML = totalAmount;
+}
+function showTransactionDateTime(transactionId) {
+    var dateTime = new Date();
+    var transactionDate = dateTime.toLocaleDateString();
+    var transactionTime = dateTime.toLocaleTimeString();
+    document.getElementById("transactiondate").innerHTML = transactionDate;
+    document.getElementById("transactiontime").innerHTML = transactionTime;
 }
 
 
